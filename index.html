@@ -3,22 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUZIX SHOP | OFFICIAL</title>
+    <title>SUZIX SHOP | UI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Caricamento Font Locale */
+        /* 1. CARICAMENTO FONT PERSONALE */
         @font-face {
             font-family: 'Next Ups';
             src: url('Next Ups.ttf') format('truetype');
-        }
-
-        :root {
-            --nintendo-red: #e60012;
-            --bg-color: #f0f0f0; /* Grigio chiaro tipo Nintendo */
-            --text-dark: #333;
-            --white: #ffffff;
         }
 
         * {
@@ -28,218 +22,280 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            font-family: 'Urbanist', sans-serif;
-            color: var(--text-dark);
-        }
-
-        /* HEADER CON TITOLO IN ALTO A DESTRA */
-        header {
-            width: 100%;
-            padding: 30px 50px;
-            display: flex;
-            justify-content: flex-end; /* Sposta a destra */
-            background-color: var(--white);
-            border-bottom: 2px solid #ddd;
-        }
-
-        .logo {
-            font-family: 'Next Ups', sans-serif;
-            font-size: 40px;
-            color: var(--text-dark);
-            text-transform: uppercase; /* Tutto CAPS */
-            letter-spacing: 2px;
-        }
-
-        /* CONTENITORE PRINCIPALE SHOP */
-        .shop-container {
-            max-width: 1200px;
-            margin: 50px auto;
+            background-color: #0a0a0a;
             display: flex;
             flex-direction: column;
-            gap: 40px;
-            padding: 0 20px;
+            align-items: center;
+            gap: 50px;
+            padding: 50px 0;
         }
 
-        /* LAYOUT PRODOTTO (ISPIRATO ALLA TUA FOTO) */
-        .product-card {
-            background: var(--white);
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* Due colonne: Immagine | Info */
-            border-radius: 4px;
+        /* 2. STRUTTURA DELLE SLIDE (1280x720) */
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Urbanist', sans-serif;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border: 1px solid #ddd;
-        }
-
-        /* Parte sinistra: Immagini */
-        .product-gallery {
-            padding: 30px;
-            background-color: #fafafa;
-            border-right: 1px solid #eee;
-        }
-
-        .main-img {
-            width: 100%;
-            height: 350px;
-            object-fit: contain;
-            background: #eee;
-            border-radius: 4px;
-            margin-bottom: 15px;
-        }
-
-        .thumbnails {
             display: flex;
-            gap: 10px;
+            flex-direction: column;
+            padding: 60px;
+            border: 1px solid #1a1a1a;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
         }
 
-        .thumb {
-            width: 80px;
-            height: 50px;
-            background: #ddd;
-            border-radius: 2px;
-            border: 2px solid transparent;
+        /* Sfondo a griglia/linee premium */
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(222, 255, 154, 0.02) 0%, transparent 50%),
+                        repeating-linear-gradient(45deg, rgba(255,255,255,0.01) 0, rgba(255,255,255,0.01) 1px, transparent 0, transparent 50%);
+            background-size: 100% 100%, 30px 30px;
+            z-index: 0;
         }
 
-        .thumb.active {
-            border-color: var(--nintendo-red);
+        .slide-container > * {
+            position: relative;
+            z-index: 1;
         }
 
-        /* Parte destra: Dettagli */
-        .product-details {
+        /* 3. LOGO IN ALTO A DESTRA (CAPS) */
+        .header-logo {
+            position: absolute;
+            top: 45px;
+            right: 60px;
+            font-family: 'Next Ups', 'Orbitron', sans-serif;
+            font-size: 38px;
+            color: #deff9a;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px rgba(222, 255, 154, 0.3);
+        }
+
+        /* 4. TITOLI DELLE SLIDE */
+        .slide-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            border-left: 8px solid #deff9a;
+            padding-left: 25px;
+        }
+
+        .content-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* 5. SCHEDA PRODOTTO */
+        .product-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            background: rgba(255,255,255,0.02);
             padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #222;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: scale(1.02);
+            border-color: #deff9a;
+        }
+
+        .image-side {
+            width: 100%;
+            height: 400px;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #333;
+        }
+
+        .image-side img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .info-side {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        .category {
-            font-size: 14px;
+        .price-tag {
+            font-size: 56px;
             font-weight: 700;
-            color: #888;
+            color: #deff9a;
+        }
+
+        .price-tag span {
+            font-size: 16px;
+            color: #777;
             text-transform: uppercase;
+            margin-left: 10px;
         }
 
-        .product-title {
-            font-size: 48px;
-            font-weight: 700;
-            margin: 0;
-            color: #000;
-        }
-
-        .price-section {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-        }
-
-        .price {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        .iva {
-            font-size: 14px;
-            color: #666;
-        }
-
-        .description {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #444;
-            margin-bottom: 20px;
-        }
-
-        /* Opzioni (Versione/Blocco come nella foto) */
-        .options-group {
-            margin-bottom: 15px;
-        }
-
-        .label {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: block;
-            text-transform: uppercase;
-        }
-
-        .option-box {
-            padding: 10px 15px;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-            display: inline-block;
-            font-weight: 600;
-            font-size: 14px;
-            margin-right: 10px;
-        }
-
-        .option-box.selected {
-            border-color: var(--nintendo-red);
-        }
-
-        /* TASTO COMPRA NINTENDO RED */
-        .buy-button {
-            background-color: var(--nintendo-red);
-            color: white;
-            text-decoration: none;
-            padding: 20px;
-            border-radius: 8px;
+        .desc-text {
             font-size: 22px;
+            line-height: 1.5;
+            color: #ccc;
+        }
+
+        .buy-btn {
+            background-color: #e60012; /* Rosso tipo eShop */
+            color: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            font-size: 24px;
             font-weight: 700;
             text-align: center;
-            transition: background 0.3s;
-            display: block;
-            margin-top: auto;
+            text-transform: uppercase;
+            margin-top: 20px;
         }
 
-        .buy-button:hover {
-            background-color: #ff1a2e;
+        /* 6. TABELLA COMPARATIVA */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 20px;
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
-            .product-card {
-                grid-template-columns: 1fr;
-            }
-            header {
-                justify-content: center;
-            }
+        th {
+            text-align: left;
+            color: #deff9a;
+            padding: 20px;
+            border-bottom: 2px solid #333;
+            text-transform: uppercase;
         }
+
+        td {
+            padding: 20px;
+            border-bottom: 1px solid #1a1a1a;
+            color: #bbb;
+        }
+
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">SUZIX SHOP</div>
-    </header>
+    <div class="slide-container" id="slide1">
+        <div class="header-logo">SUZIX SHOP</div>
+        <div class="content-area">
+            <h1 style="font-size: 120px; font-weight: 700; line-height: 0.9; margin: 0;">DOMINA IL<br><span style="color:#deff9a">SERVER.</span></h1>
+            <p style="font-size: 28px; color: #666; margin-top: 30px; max-width: 800px;">
+                I migliori tool di raiding e pvp client per Minecraft 1.21.4. Inizia la tua scalata verso il potere.
+            </p>
+        </div>
+    </div>
 
-    <main class="shop-container">
-
-        <article class="product-card">
-            <div class="product-gallery">
-                <img src="suzix.png" alt="Suzix Tool" class="main-img" onerror="this.src='https://via.placeholder.com/600x400?text=Suzix+Image'">
-                <div class="thumbnails">
-                    <div class="thumb active"></div>
-                    <div class="thumb"></div>
-                    <div class="thumb"></div>
+    <div class="slide-container" id="slide2">
+        <div class="header-logo">SUZIX SHOP</div>
+        <h2 class="slide-title">Raid Tool</h2>
+        <div class="content-area">
+            <a href="https://discord.com/users/1307076850018685109" target="_blank" class="product-card">
+                <div class="image-side">
+                    <img src="suzix.png" alt="Suzix" onerror="this.src='https://via.placeholder.com/500x300?text=suzix.png+mancante'">
                 </div>
+                <div class="info-side">
+                    <h3 style="font-size: 48px; color: #fff;">Suzix</h3>
+                    <div class="price-tag">2,00 € <span>IVA INCLUSA</span></div>
+                    <p class="desc-text">
+                        Tool professionale per nukkare server Minecraft. Ottimizzato per server senza protezioni auth, garantisce una distruzione rapida e silenziosa.
+                    </p>
+                    <div class="buy-btn">COMPRA ORA</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide3">
+        <div class="header-logo">SUZIX SHOP</div>
+        <h2 class="slide-title">PvP Cheat Client</h2>
+        <div class="content-area">
+            <a href="https://discord.com/users/1307076850018685109" target="_blank" class="product-card">
+                <div class="image-side">
+                    <img src="werblyx.png" alt="WerblyX" onerror="this.src='https://via.placeholder.com/500x300?text=werblyx.png+mancante'">
+                </div>
+                <div class="info-side">
+                    <h3 style="font-size: 48px; color: #fff;">WerblyX</h3>
+                    <div class="price-tag">5,00 € <span>IVA INCLUSA</span></div>
+                    <p class="desc-text">
+                        Cheat Minecraft Fabric 1.21.4 per PvP. Include AI Bot intelligenti, automace e una suite di automazione per dominare ogni scontro.
+                    </p>
+                    <div class="buy-btn">COMPRA ORA</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide4">
+        <div class="header-logo">SUZIX SHOP</div>
+        <h2 class="slide-title">Features Comparison</h2>
+        <div class="content-area">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Suzix</th>
+                        <th>WerblyX</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Minecraft Version</td>
+                        <td>Multi-version</td>
+                        <td>Fabric 1.21.4</td>
+                    </tr>
+                    <tr>
+                        <td>Server Nuking</td>
+                        <td><i class="fa-solid fa-check" style="color:#deff9a"></i> Advanced</td>
+                        <td><i class="fa-solid fa-xmark" style="color:#e60012"></i></td>
+                    </tr>
+                    <tr>
+                        <td>PvP AI Bots</td>
+                        <td><i class="fa-solid fa-xmark" style="color:#e60012"></i></td>
+                        <td><i class="fa-solid fa-check" style="color:#deff9a"></i> Included</td>
+                    </tr>
+                    <tr>
+                        <td>Auto-Mace</td>
+                        <td><i class="fa-solid fa-xmark" style="color:#e60012"></i></td>
+                        <td><i class="fa-solid fa-check" style="color:#deff9a"></i> Smart Mode</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide5" style="text-align: center; align-items: center;">
+        <div class="header-logo">SUZIX SHOP</div>
+        <div class="content-area">
+            <h2 style="font-size: 80px; margin: 0;">QUESTIONS?</h2>
+            <p style="font-size: 24px; color: #666; margin-top: 20px;">Entra nel nostro server Discord per supporto e acquisti.</p>
+            <div style="margin-top: 60px; font-family: 'Orbitron'; font-size: 32px; color: #deff9a; letter-spacing: 2px;">
+                USER ID: 1307076850018685109
             </div>
-            <div class="product-details">
-                <span class="category">Minecraft Nuker / Raid Tool</span>
-                <h2 class="product-title">Suzix</h2>
-                <div class="price-section">
-                    <span class="price">2,00 €</span>
-                    <span class="iva">(IVA INCLUSA)</span>
-                </div>
-                <p class="description">
-                    Suzix è un tool professionale progettato per nukkare server Minecraft. 
-                    Ottimizzato per agire su server senza protezioni auth, garantisce una 
-                    distruzione rapida e pulita senza rallentamenti.
-                </p>
-                <div class="options-group">
-                    <span class="label">Versione</span>
-                    <div class="option-box selected">RAIDER EDITION</div>
-                    <div class="option-box">PRO (SOON)</div>
-                </div>
-                <a href="https://discord.com/users/130707685001868
+            <div style="margin-top: 80px; display: flex; gap: 40px; color: #333; font-size: 14px; text-transform: uppercase;">
+                <span>Secure Tools</span>
+                <span>Fast Setup</span>
+                <span>24/7 Support</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
