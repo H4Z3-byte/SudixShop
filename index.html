@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suzix Shop</title>
+    <style>
+        /* Caricamento del font personalizzato */
+        @font-face {
+            font-family: 'Next Ups';
+            src: url('Next Ups.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Reset e Stili Generali */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f0c1b;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Header con Titolo in Alto a Destra */
+        header {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px 0;
+        }
+
+        .shop-title {
+            font-family: 'Next Ups', sans-serif;
+            font-size: 3rem;
+            color: #ff007f;
+            text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+        }
+
+        /* Contenitore Prodotti */
+        .shop-container {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 60px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Card del Prodotto */
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            width: 300px;
+            padding: 25px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: block;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff007f;
+            box-shadow: 0 10px 25px rgba(255, 0, 127, 0.3);
+        }
+
+        /* Immagini dei Prodotti */
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+
+        .product-name {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            color: #00ffcc;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Bottone Compra */
+        .buy-btn {
+            background: linear-gradient(45deg, #ff007f, #7928ca);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            width: 100%;
+            transition: filter 0.2s ease;
+        }
+
+        .product-card:hover .buy-btn {
+            filter: brightness(1.2);
+        }
+
+        /* Responsive per Mobile */
+        @media (max-width: 768px) {
+            header {
+                justify-content: center;
+            }
+            .shop-title {
+                font-size: 2.5rem;
+            }
+            .shop-container {
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="shop-title">Suzix Shop</h1>
+    </header>
+
+    <main class="shop-container">
+
+        <a href="https://discord.com/users/1307076850018685109" target="_blank" class="product-card">
+            <img src="suzix.png" alt="Suzix" class="product-image" onerror="this.src='https://via.placeholder.com/200?text=Suzix+Image'">
+            <h2 class="product-name">Suzix</h2>
+            <div class="product-price">2,00 €</div>
+            <button class="buy-btn">Compra</button>
+        </a>
+
+        <a href="https://discord.com/users/1307076850018685109" target="_blank" class="product-card">
+            <img src="werblyx.png" alt="WerblyX" class="product-image" onerror="this.src='https://via.placeholder.com/200?text=WerblyX+Image'">
+            <h2 class="product-name">WerblyX</h2>
+            <div class="product-price">5,00 €</div>
+            <button class="buy-btn">Compra</button>
+        </a>
+
+    </main>
+
+</body>
+</html>
